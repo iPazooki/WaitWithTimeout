@@ -4,7 +4,7 @@ This project provides methods to handle asynchronous operations with timeout cap
 
 ## Overview
 
-This project contains extension methods for handling asynchronous operations with timeouts. The primary purpose of these methods is to provide a way to execute asynchronous tasks while ensuring that they complete within a specified time frame. If the task takes longer than the specified timeout, a `TimeoutException` is thrown.
+This project contains extension methods for handling asynchronous operations with timeouts. The primary purpose of these methods is to provide a way to execute asynchronous tasks while ensuring that they complete within a specified time frame. If the task takes longer than the specified timeout, a `TaskCanceledException` is thrown.
 
 ## Usage
 You can use this project to wrap your asynchronous tasks with timeout constraints. The class provides the following methods:
