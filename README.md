@@ -9,9 +9,9 @@ This project contains extension methods for handling asynchronous operations wit
 ## Usage
 You can use this project to wrap your asynchronous tasks with timeout constraints. The class provides the following methods:
 
-`WaitWithTimeoutAsync<T>(this Task<T> task, TimeSpan timeout, string exceptionMessage = "The operation has timed out.")`: Wraps an asynchronous task that returns a result with a timeout. If the task completes within the specified timeout, the result is returned. Otherwise, a TimeoutException is thrown.
+`WaitWithTimeoutAsync<T>(this Task<T> task, TimeSpan timeout)`: Wraps an asynchronous task that returns a result with a timeout. If the task completes within the specified timeout, the result is returned. Otherwise, a TimeoutException is thrown.
 
-`WaitWithTimeoutAsync(this Task task, TimeSpan timeout, string exceptionMessage = "The operation has timed out.")`: Wraps an asynchronous task without a return value with a timeout. If the task completes within the specified timeout, the execution continues. Otherwise, a TimeoutException is thrown.
+`WaitWithTimeoutAsync(this Task task, TimeSpan timeout)`: Wraps an asynchronous task without a return value with a timeout. If the task completes within the specified timeout, the execution continues. Otherwise, a TimeoutException is thrown.
 
 `WaitWithTimeoutAsync<T>(this ValueTask<T> task, TimeSpan timeout)`: Wraps a ValueTask<T> with a timeout. This method internally converts the ValueTask<T> to a regular Task<T> and uses the first method mentioned for timeout handling.
 
@@ -32,7 +32,7 @@ class Program
             var result = await SomeAsyncOperation().WaitWithTimeoutAsync(timeout);
             Console.WriteLine("Operation succeeded: " + result);
         }
-        catch (TimeoutException ex)
+        catch (TaskCanceledException ex)
         {
             Console.WriteLine("Operation timed out: " + ex.Message);
         }

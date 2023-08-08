@@ -10,7 +10,7 @@ public class UtilityTests
         var task = Task.Delay(5000);
 
         // Act & Assert
-        await Assert.ThrowsAsync<TimeoutException>(() => task.WaitWithTimeoutAsync(timeout));
+        await Assert.ThrowsAsync<TaskCanceledException>(() => task.WaitWithTimeoutAsync(timeout));
     }
 
     [Fact]
