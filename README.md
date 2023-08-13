@@ -1,3 +1,8 @@
+![Nuget](https://img.shields.io/nuget/v/WaitWithTimeout)
+![GitHub](https://img.shields.io/github/license/ipazooki/WaitWithTimeout)
+![GitHub contributors](https://img.shields.io/github/contributors/ipazooki/WaitWithTimeout)
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/ipazooki/WaitWithTimeout/dotnet.yml)
+
 ## Async Timeout Handling
 
 This project provides methods to handle asynchronous operations with timeout capabilities.
@@ -46,10 +51,12 @@ class Program
 }
 ```
 
-## Contributions
+### Contribution
+👍 You are encouraged to contribute to this project by forking it or giving it a star if you find it valuable :)
 
-Contributions to this project are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
+### Social Media
 
-## License
-
-This utility class is provided under the [MIT License](https://en.wikipedia.org/wiki/MIT_License).
+[![Email](https://img.shields.io/badge/Email-gray?logo=gmail&style=flat-square)](mailto:ipazooki@gmail.com)
+[![Stack Overflow](https://img.shields.io/badge/Stackoverflow-gray?logo=stackoverflow&style=flat-square)](https://stackoverflow.com/users/1424065/mrp)
+[![Linkedin](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/pazooki)](https://www.linkedin.com/in/pazooki/)
+![Twitter Follow](https://img.shields.io/twitter/follow/ipazooki)
