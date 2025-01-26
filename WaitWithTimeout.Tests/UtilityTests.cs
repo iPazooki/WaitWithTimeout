@@ -3,43 +3,48 @@ namespace WaitWithTimeout.Tests;
 public class UtilityTests
 {
     [Fact]
-    public async Task WaitWithTimeoutAsync_ShouldThrowTimeoutException_WhenTaskIsNotCompletedWithinTimeout()
+    public async Task WaitWithTimeoutAsync_TaskCompletesBeforeTimeout_ReturnsResult()
     {
-        // Arrange
-        var timeout = TimeSpan.FromSeconds(1);
-        var task = Task.Delay(5000);
-
-        // Act & Assert
-        await Assert.ThrowsAsync<TaskCanceledException>(() => task.WaitWithTimeoutAsync(timeout));
+        var task = Task.FromResult(42);
+        var result = await task.WaitWithTimeoutAsync(TimeSpan.FromSeconds(1));
+        Assert.Equal(42, result);
     }
 
     [Fact]
-    public async Task WaitWithTimeoutAsync_ShouldReturnResult_WhenTaskIsCompletedWithinTimeout()
+    public async Task WaitWithTimeoutAsync_TaskTimesOut_ThrowsTaskCanceledException()
     {
-        // Arrange
-        var timeout = TimeSpan.FromSeconds(5);
-        var expected = 42;
-        var task = Task.FromResult(expected);
-
-        // Act
-        var actual = await task.WaitWithTimeoutAsync(timeout);
-
-        // Assert
-        Assert.Equal(expected, actual);
+        var task = Task.Delay(TimeSpan.FromSeconds(2));
+        await Assert.ThrowsAsync<TaskCanceledException>(() => task.WaitWithTimeoutAsync(TimeSpan.FromSeconds(1)));
     }
 
     [Fact]
-    public async Task WaitWithTimeoutAsync_ShouldReturnResult_WhenValueTaskIsCompletedWithinTimeout()
+    public async Task WaitWithTimeoutAsync_ValueTaskCompletesBeforeTimeout_ReturnsResult()
     {
-        // Arrange
-        var timeout = TimeSpan.FromSeconds(5);
-        var expected = 42;
-        var task = new ValueTask<int>(expected);
+        var task = new ValueTask<int>(42);
+        var result = await task.WaitWithTimeoutAsync(TimeSpan.FromSeconds(1));
+        Assert.Equal(42, result);
+    }
 
-        // Act
-        var actual = await task.WaitWithTimeoutAsync(timeout);
+    [Fact]
+    public async Task WaitWithTimeoutAsync_ValueTaskTimesOut_ThrowsTaskCanceledException()
+    {
+        var task = new ValueTask(Task.Delay(TimeSpan.FromSeconds(2)));
+        await Assert.ThrowsAsync<TaskCanceledException>(() => task.WaitWithTimeoutAsync(TimeSpan.FromSeconds(1)));
+    }
+    
+    [Fact]
+    public async Task WaitWithTimeoutAsync_TaskCompletesExactlyAtTimeout_ReturnsResult()
+    {
+        var task = Task.Delay(TimeSpan.FromSeconds(1)).ContinueWith(_ => 42);
+        var result = await task.WaitWithTimeoutAsync(TimeSpan.FromSeconds(1.1));
+        Assert.Equal(42, result);
+    }
 
-        // Assert
-        Assert.Equal(expected, actual);
+    [Fact]
+    public async Task WaitWithTimeoutAsync_ValueTaskCompletesExactlyAtTimeout_ReturnsResult()
+    {
+        var task = new ValueTask<int>(Task.Delay(TimeSpan.FromSeconds(1)).ContinueWith(_ => 42));
+        var result = await task.WaitWithTimeoutAsync(TimeSpan.FromSeconds(1.1));
+        Assert.Equal(42, result);
     }
 }

@@ -1,30 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageId>WaitWithTimeout</PackageId>
-    <Title>Async Timeout Handling</Title>
-    <Version>1.1.0</Version>
-    <Authors>ipazooki</Authors>
-    <Description>Handling asynchronous operations with timeout capabilities.</Description>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/iPazooki/WaitWithTimeout</RepositoryUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <PackageId>WaitWithTimeout</PackageId>
+        <Title>Async Timeout Handling</Title>
+        <Version>2.0.0</Version>
+        <Authors>ipazooki</Authors>
+        <Description>Handling asynchronous operations with timeout capabilities.</Description>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <RepositoryUrl>https://github.com/iPazooki/WaitWithTimeout</RepositoryUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <AssemblyVersion>2.0.0</AssemblyVersion>
+        <FileVersion>2.0.0</FileVersion>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <EditorConfigFiles Remove="C:\Projects\WaitWithTimeout\WaitWithTimeout\.editorconfig" />
-  </ItemGroup>
+    <ItemGroup>
+        <EditorConfigFiles Remove="C:\Projects\WaitWithTimeout\WaitWithTimeout\.editorconfig"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <None Include="..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Include="C:\Projects\WaitWithTimeout\WaitWithTimeout\.editorconfig" />
-  </ItemGroup>
+    <ItemGroup>
+        <None Include="..\README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
 
 </Project>
